@@ -2,12 +2,12 @@ version: '3.8'
 services:
   QR-boots:
     build: .
-    image: QR-boots-image
+    image: qr-boots-image
     container_name: QR-boots-container
     ports:
     - "8080:8080"
     depends_on:
-    - stats-db
+    - main-db
     environment:
       - SPRING_DRIVER_CLASS_NAME=org.postgresql.Driver
       - SPRING_DATASOURCE_URL=jdbc:postgresql://main-db:5432/QR_boots
