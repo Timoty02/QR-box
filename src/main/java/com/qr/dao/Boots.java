@@ -19,7 +19,6 @@ public class Boots {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    String name;
     @Column(name = "image", unique = false, nullable = false, length = 100000)
     byte[] image;
 }

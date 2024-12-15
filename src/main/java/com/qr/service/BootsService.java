@@ -13,8 +13,8 @@ public class BootsService {
         this.bootsRepository = bootsRepository;
     }
 
-    public void save(Boots boots) {
-        bootsRepository.save(boots);
+    public Boots save(Boots boots) {
+        return bootsRepository.save(boots);
     }
 
     public byte[] getBootsImageById(int id) {
