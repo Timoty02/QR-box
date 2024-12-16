@@ -23,14 +23,18 @@ public class BootsController {
 
     @PostMapping("/boots")
     public String saveBoots(@RequestParam("image") MultipartFile file) throws IOException {
+        log.info("Saving boots image");
         Boots boots = new Boots();
         boots.setImage(file.getBytes());
         Boots upBoots = bootsService.save(boots);
+        log.info("Boots image saved");
         return "http://localhost:8080/boots/" + upBoots.getId() + "/image";
     }
     @GetMapping(path = {"/boots/{id}/image"})
     public ResponseEntity<byte[]> getImage(@PathVariable("id") Integer id) throws IOException {
+        log.info("Getting boots image with id: {}", id);
         final byte[] dbImage = bootsService.getBootsImageById(id);
+        log.info("Boots image with id: {} retrieved", id);
         return ResponseEntity
                 .ok()
                 .contentType(MediaType.IMAGE_PNG)
