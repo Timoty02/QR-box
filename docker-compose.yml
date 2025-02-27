@@ -2,15 +2,15 @@ version: '3.8'
 services:
   QR-boots:
     build: .
-    image: qr-boots-image
-    container_name: QR-boots-container
+    image: qr-box-image
+    container_name: QR-box-container
     ports:
     - "8080:8080"
     depends_on:
     - main-db
     environment:
       - SPRING_DRIVER_CLASS_NAME=org.postgresql.Driver
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://main-db:5432/QR_boots
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://main-db:5432/QR_box
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=root
     #        - TZ=Europe/Moscow
@@ -21,6 +21,6 @@ services:
     ports:
       - 6542:5432
     environment:
-      - POSTGRES_DB=QR_boots
+      - POSTGRES_DB=QR_box
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
