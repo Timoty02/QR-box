@@ -14,11 +14,13 @@ import lombok.extern.slf4j.Slf4j;
 @AllArgsConstructor
 @FieldDefaults(level = lombok.AccessLevel.PRIVATE)
 @Entity
-@Table(name = "boots")
-public class Boots {
+@Table(name = "box")
+public class Box {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    @Column(name = "image", unique = false, nullable = false, length = 100000)
+    @Column(name = "name", nullable = false)
+    String name;
+    @Column(name = "image", nullable = false, length = 100000)
     byte[] image;
 }

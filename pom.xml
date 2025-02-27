@@ -11,7 +11,7 @@
     </parent>
 
     <groupId>ru.yandex.practicum</groupId>
-    <artifactId>QR-boots</artifactId>
+    <artifactId>QR-box</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -20,6 +20,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>io.nayuki</groupId>
+            <artifactId>qrcodegen</artifactId>
+            <version>1.8.0</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -88,7 +93,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>com.qr.QR_boots</mainClass>
+                            <mainClass>com.qr.QR_box</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
