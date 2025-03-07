@@ -1,11 +1,12 @@
 package com.qr.service;
 
 import com.qr.dao.Box;
+import com.qr.exception.NotFoundException;
 import com.qr.repository.BoxRepository;
+import io.nayuki.qrcodegen.QrCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
-import io.nayuki.qrcodegen.*;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -17,6 +18,7 @@ import java.util.Objects;
 public class BoxService {
     private final BoxRepository boxRepository;
     private final String baseUrl;
+
     @Autowired
     public BoxService(BoxRepository boxRepository, Environment environment) {
         this.boxRepository = boxRepository;
@@ -35,7 +37,7 @@ public class BoxService {
         baseUrl = protocol.toLowerCase() + "://" + host + ":" + port;
     }
 
-    public byte[] qrSupplier (String url) throws IOException {
+    public byte[] qrSupplier(String url) throws IOException {
         QrCode qr = QrCode.encodeText(baseUrl + url, QrCode.Ecc.MEDIUM);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ImageIO.write(toImage(qr, 10, 4, 0xFFFFFFFF, 0xFF000000), "PNG", baos);
@@ -47,8 +49,9 @@ public class BoxService {
     }
 
     public byte[] getBoxImageById(int id) {
-        return boxRepository.findById(id).orElseThrow( () -> new RuntimeException("Box not found")).getImage();
+        return boxRepository.findById(id).orElseThrow(() -> new RuntimeException("Box not found")).getImage();
     }
+
     private BufferedImage toImage(QrCode qr, int scale, int border, int lightColor, int darkColor) {
         Objects.requireNonNull(qr);
         if (scale <= 0 || border < 0)
@@ -66,12 +69,7 @@ public class BoxService {
         return result;
     }
 
-    public byte[] getBoxQrByName(String name) {
-        Box box = boxRepository.findByName(name).orElseThrow( () -> new RuntimeException("Box not found"));
-        try {
-            return qrSupplier("XXXXXXXXXXXXXXXXXXXXXXXXXX" + box.getId() + "/image");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public Box getBoxByName(String name) {
+        return boxRepository.findByName(name).orElseThrow(() -> new NotFoundException("Box not found"));
     }
 }

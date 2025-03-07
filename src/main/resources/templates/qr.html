@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Загрузка картинки и текста</title>
+</head>
+<body>
+<h2>Загрузить другую картинку и текст</h2>
+<form action="/" method="get">
+    <input type="submit" value="Вернуться на главную">
+</form>
+<div th:if="${qrCodeBase64}">
+    <h3>Ваш QR-код:</h3>
+    <img th:src="'data:image/png;base64,' + ${qrCodeBase64}" alt="QR Code">
+</div>
+<h3>Прямая ссылка:</h3>
+<a th:href="@{/box/{id}/image (id=${boxId})}">
+    <button>Перейти</button>
+</a>
+</body>
+</html>

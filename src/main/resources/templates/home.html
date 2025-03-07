@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Загрузка картинки и текста</title>
+</head>
+<body>
+<h2>Загрузите картинку и текст</h2>
+<form action="/box/upload" method="post" enctype="multipart/form-data">
+    Имя: <input type="text" name="name"><br>
+    Картинка: <input type="file" name="image"><br>
+    <input type="submit" value="Загрузить">
+</form>
+<h2>Найти коробку по названию</h2>
+<form action="/box/find/qr" method="get">
+    Имя: <input type="text" name="name"><br>
+    <input type="submit" value="Найти">
+</form>
+</body>
+</html>

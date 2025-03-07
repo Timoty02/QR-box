@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Произошла ошибка</title>
+</head>
+<body>
+<h1>Произошла ошибка</h1>
+<h3>Описание ошибки</h3>
+<p th:text="${errorMessage}">Здесь будет описание ошибки.</p>
+<form action="/" method="get">
+    <input type="submit" value="Вернуться на главную">
+</form>
+</body>
+</html>

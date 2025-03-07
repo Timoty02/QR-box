@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ваша коробка</title>
+</head>
+<body>
+<h2>Загрузить другую картинку и текст</h2>
+<form action="/" method="get">
+    <input type="submit" value="Вернуться на главную">
+</form>
+<div>
+    <h3>Ваша картинка:</h3>
+    <img th:src="'data:image/png;base64,' + ${imageBase64}" alt="Image from database"/>
+</div>
+</body>
+</html>
