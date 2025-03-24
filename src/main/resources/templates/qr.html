@@ -9,7 +9,8 @@
     <input type="submit" value="Вернуться на главную">
 </form>
 <div th:if="${qrCodeBase64}">
-    <h3>Ваш QR-код:</h3>
+    <h3 th:text="'Коробка c ID: ' + ${boxId}"></h3>
+    <p> Ваш QR-код: </p>
     <img th:src="'data:image/png;base64,' + ${qrCodeBase64}" alt="QR Code">
 </div>
 <h3>Прямая ссылка:</h3>
