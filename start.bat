@@ -1,8 +1,18 @@
 @echo off
+echo [Windows] Project build start...
+call mvn clean install
+if %errorlevel% neq 0 (
+    echo Ошибка при сборке Maven!
+    exit /b %errorlevel%
+)
 
-:: Собираем проект через Maven
-mvn clean install
+echo [Windows] Dicker-images build...
+call docker-compose build
+if %errorlevel% neq 0 (
+    echo Ошибка при сборке Docker!
+    exit /b %errorlevel%
+)
 
-:: Собираем и запускаем Docker-контейнеры
-docker-compose build
-docker-compose up -d
+echo [Windows] Container start...
+call docker-compose up -d
+echo Start successful.
