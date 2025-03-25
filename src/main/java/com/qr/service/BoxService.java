@@ -51,6 +51,9 @@ public class BoxService {
     public byte[] getBoxImageById(int id) {
         return boxRepository.findById(id).orElseThrow(() -> new RuntimeException("Box not found")).getImage();
     }
+    public String getBoxNameById(int id){
+        return boxRepository.findById(id).orElseThrow(() -> new RuntimeException("Box not found")).getName();
+    }
 
     private BufferedImage toImage(QrCode qr, int scale, int border, int lightColor, int darkColor) {
         Objects.requireNonNull(qr);
