@@ -54,6 +54,7 @@ public class BoxController {
         final byte[] image = boxService.getBoxImageById(id);
         log.info("Box image with id: {} retrieved", id);
         String imageCodeBase64 = Base64.getEncoder().encodeToString(image);
+        model.addAttribute("name", boxService.getBoxNameById(id));
         model.addAttribute("imageBase64", imageCodeBase64);
         return "image";
     }

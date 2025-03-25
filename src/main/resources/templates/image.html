@@ -9,6 +9,8 @@
     <input type="submit" value="Вернуться на главную">
 </form>
 <div>
+    <h3>Название:</h3>
+    <p th:text="${name}"></p>
     <h3>Ваша картинка:</h3>
     <img th:src="'data:image/png;base64,' + ${imageBase64}" alt="Image from database"/>
 </div>
